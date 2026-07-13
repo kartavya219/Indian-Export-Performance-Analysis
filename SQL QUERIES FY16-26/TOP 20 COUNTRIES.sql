@@ -1,0 +1,2 @@
+with cte as (select country, round(sum(trade_value_usd)/1000000000,2) as trade from fy16_26 group by 1)
+ select rank() over (order by trade desc) as 'Rank', country, trade as 'Export in Billion USD' from cte limit 20
